@@ -1,36 +1,53 @@
-## Micronaut 3.8.8 Documentation
+### Micronaut app using
+* Project reactor
+* Hibernate JPA
+* Flyway
+* Postgres
+* Test resources
 
-- [User Guide](https://docs.micronaut.io/3.8.8/guide/index.html)
-- [API Reference](https://docs.micronaut.io/3.8.8/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/3.8.8/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
----
+Primarily created to test ManyToMany handling with no cascade option set.
 
-- [Shadow Gradle Plugin](https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow)
-## Feature flyway documentation
+`curl --location 'http://localhost:8080/genres/list'`
 
-- [Micronaut Flyway Database Migration documentation](https://micronaut-projects.github.io/micronaut-flyway/latest/guide/index.html)
+`curl --location 'http://localhost:8080/books/list'`
 
-- [https://flywaydb.org/](https://flywaydb.org/)
-
-
-## Feature jdbc-hikari documentation
-
-- [Micronaut Hikari JDBC Connection Pool documentation](https://micronaut-projects.github.io/micronaut-sql/latest/guide/index.html#jdbc)
-
-
-## Feature reactor documentation
-
-- [Micronaut Reactor documentation](https://micronaut-projects.github.io/micronaut-reactor/snapshot/guide/index.html)
-
-
-## Feature test-resources documentation
-
-- [Micronaut Test Resources documentation](https://micronaut-projects.github.io/micronaut-test-resources/latest/guide/)
+````
+curl --location 'http://localhost:8080/books' \
+--header 'Content-Type: application/json' \
+--data '{
+"name": "Star wars",
+"genres": [
+    "513716f3-eda5-437a-a320-37278e7e4a89",
+    "d7c37b53-9572-42d0-b58f-087b153d3db4"
+    ]
+}'
+````
 
 
-## Feature http-client documentation
+````
+curl --location --request PUT 'http://localhost:8080/books' \
+--header 'Content-Type: application/json' \
+--data '{
+    "id": "e009800f-4bd7-4c6b-b97a-c18a6049ccec",
+    "name": "War of the worlds - extended",
+    "genres": [
+        "1d6ca063-1fcf-4876-a659-3433211b2e11",
+        "513716f3-eda5-437a-a320-37278e7e4a89",
+        "d7c37b53-9572-42d0-b58f-087b153d3db4"
+        ]
+}'
+````
 
-- [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
 
-
+````
+curl --location --request PATCH 'http://localhost:8080/books' \
+--header 'Content-Type: application/json' \
+--data '{
+    "id": "e009800f-4bd7-4c6b-b97a-c18a6049ccec",
+    "genres": [
+        "1d6ca063-1fcf-4876-a659-3433211b2e11",
+        "d7c37b53-9572-42d0-b58f-087b153d3db4",
+        "513716f3-eda5-437a-a320-37278e7e4a89"
+        ]
+}'
+````
