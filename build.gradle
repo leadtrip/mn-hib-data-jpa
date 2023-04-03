@@ -41,7 +41,7 @@ java {
 graalvmNative.toolchainDetection = false
 micronaut {
     runtime("netty")
-    testRuntime("spock2")
+    testRuntime("junit5")
     processing {
         incremental(true)
         annotations("example.micronaut.*")

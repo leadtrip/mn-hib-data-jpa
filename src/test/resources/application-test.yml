@@ -1,6 +1,10 @@
+flyway:
+  datasources:
+    default:
+      enabled: false
 jpa:
   default:
     properties:
       hibernate:
         hbm2ddl:
-          auto: none
+          auto: update
