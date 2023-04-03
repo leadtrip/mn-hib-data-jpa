@@ -3,12 +3,10 @@ package example.micronaut.services;
 import example.micronaut.commands.BookCreateCommand;
 import example.micronaut.commands.BookUpdateCommand;
 import example.micronaut.domain.Book;
-import io.micronaut.data.model.Page;
-import io.micronaut.data.model.Pageable;
 import jakarta.inject.Singleton;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -30,9 +28,8 @@ public class BookService {
                 .findById(id);
     }
 
-    public Mono<List<Book>> list(Pageable pageable ) {
-        return bookRepository.findAll(pageable)
-                .map(Page::getContent);
+    public Flux<Book> list() {
+        return bookRepository.findAll();
     }
 
     public Mono<Book> save( BookCreateCommand bookCreateCommand ) {
