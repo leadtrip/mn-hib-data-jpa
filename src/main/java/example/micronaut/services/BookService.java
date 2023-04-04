@@ -37,7 +37,7 @@ public class BookService {
     }
 
     public Mono<Book> update( BookUpdateCommand bookUpdateCommand ) {
-        return bookRepository.update(bookTransformer.fromUpdateCommandJustId(bookUpdateCommand));
+        return bookRepository.update(bookTransformer.fromUpdateCommand(bookUpdateCommand));
     }
 
     public Mono<Book> updateGenres( BookUpdateCommand bookUpdateCommand ) {

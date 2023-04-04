@@ -11,7 +11,10 @@ import java.util.stream.Collectors;
 @Singleton
 public class BookTransformer {
 
-    public Book fromUpdateCommandJustId(BookUpdateCommand bookUpdateCommand) {
+    /**
+     * Only the Genre IDs are required by hibernate to figure out the join table mappings required so Genre::new is fine.
+     */
+    public Book fromUpdateCommand(BookUpdateCommand bookUpdateCommand) {
         Book book = new Book();
         book.setId(bookUpdateCommand.getId());
         book.setName(bookUpdateCommand.getName());

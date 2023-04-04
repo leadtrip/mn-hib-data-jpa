@@ -21,7 +21,7 @@ public class Book {
         this.genres = genres;
     }
 
-    @ManyToMany
+    @ManyToMany     // I only want hibernate to manage the book and book_genre join table so no cascade type is specified
     @JoinTable(
             name = "book_genre",
             joinColumns = @JoinColumn(name = "book_id"),
